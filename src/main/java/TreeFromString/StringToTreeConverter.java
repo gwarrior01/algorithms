@@ -1,7 +1,6 @@
 package TreeFromString;
 
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Queue;
 
 public class StringToTreeConverter {
@@ -18,13 +17,13 @@ public class StringToTreeConverter {
     }
 
     private int getSubTreeSeparatorIndex(String value) {
-        Deque<Character> bracketsHolder = new ArrayDeque<>();
+        int openBracketsCount = 0;
         for (int i = value.indexOf('('); i < value.length(); i++) {
             if (value.charAt(i) == '(') {
-                bracketsHolder.addFirst('(');
+                openBracketsCount += 1;
             } else if (value.charAt(i) == ')') {
-                bracketsHolder.removeFirst();
-                if (bracketsHolder.isEmpty()) return i;
+                openBracketsCount -= 1;
+                if (openBracketsCount == 0) return i;
             }
         }
         return value.length() - 1;
