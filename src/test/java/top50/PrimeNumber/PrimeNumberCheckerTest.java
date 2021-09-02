@@ -1,4 +1,4 @@
-package PrimeNumber;
+package top50.PrimeNumber;
 
 import org.junit.jupiter.api.Test;
 

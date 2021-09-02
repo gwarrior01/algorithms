@@ -1,4 +1,4 @@
-package FibonacciSeries;
+package top50.FibonacciSeries;
 
 public class FibonacciSeriesPrinter {
 

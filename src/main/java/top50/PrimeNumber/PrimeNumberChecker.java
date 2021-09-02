@@ -1,4 +1,4 @@
-package PrimeNumber;
+package top50.PrimeNumber;
 
 public class PrimeNumberChecker {
 
