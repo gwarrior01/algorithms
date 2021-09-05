@@ -17,14 +17,10 @@ class RemoveDuplicatesFromArrayTest {
     }
 
     @Test
-    void removeDuplicateFromStringArray() {
-        assertArrayEquals(new String[]{"a", "abc", "bcd"}, RemoveDuplicatesFromArray.removeDuplicateFromStringArray(new String[]{"abc", "a", "bcd", "abc", "a"}));
-    }
-
-    @Test
     void removeDuplicateFromArray() {
-        assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6}, RemoveDuplicatesFromArray.removeDuplicateFromArray(new Integer[]{1, 3, 5, 6, 6, 2, 2, 3, 4}, Integer.class, (a, b) -> a != b));
-        assertArrayEquals(new Character[]{'a', 'b', 'c', 'd'}, RemoveDuplicatesFromArray.removeDuplicateFromArray(new Character[]{'a', 'b', 'c', 'd', 'b'}, Character.class, (a, b) -> a != b));
-        assertArrayEquals(new String[]{"a", "abc", "bcd"}, RemoveDuplicatesFromArray.removeDuplicateFromArray(new String[]{"abc", "a", "bcd", "abc", "a"}, String.class, (a, b) -> !a.equals(b)));
+        assertArrayEquals(new Integer[]{1, 3, 5, 6, 2, 4}, RemoveDuplicatesFromArray.removeDuplicateFromArray(new Integer[]{1, 3, 5, 6, 2, 4}));
+        assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6}, RemoveDuplicatesFromArray.removeDuplicateFromArray(new Integer[]{1, 3, 4, 5, 3, 6, 5, 2, 4}));
+        assertArrayEquals(new Character[]{'a', 'b', 'c', 'd'}, RemoveDuplicatesFromArray.removeDuplicateFromArray(new Character[]{'a', 'b', 'c', 'd', 'b'}));
+        assertArrayEquals(new String[]{"a", "abc", "bcd"}, RemoveDuplicatesFromArray.removeDuplicateFromArray(new String[]{"abc", "a", "bcd", "abc", "a"}));
     }
 }
