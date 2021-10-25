@@ -7,7 +7,7 @@ public class BinarySearch {
         int low = 0;
         int high = array.length - 1;
         while (low <= high) {
-            int med = (low + high) >> 1;
+            int med = (low + high) >>> 1;
             if (array[med] == key) {
                 return med;
             } else if (array[med] > key) {
