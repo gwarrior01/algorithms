@@ -10,8 +10,11 @@ public class StreamSum {
                 .reduce(
                         new HashMap<>(Map.of(true, 0, false, 0)),
                         (accumMap, map) -> {
-                            Integer number = Optional.ofNullable(map.get(true)).orElse(map.get(false));
-                            accumMap.merge(number > 0, map.get(number > 0), (prev, value) -> prev + value);
+                            Optional.ofNullable(map.get(true))
+                                    .ifPresentOrElse(
+                                            number -> accumMap.merge(true, map.get(true), (prev, value) -> prev + value),
+                                            () -> accumMap.merge(false, map.get(false), (prev, value) -> prev + value)
+                                    );
                             return accumMap;
                         }
                 );
