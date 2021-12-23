@@ -54,7 +54,7 @@ public class Celebrity {
             }
         }
         for (int i = 0; i < persons.size(); i++) {
-            if (!potentialCelebrity.equals(persons.get(0)) && potentialCelebrity.isKnownPerson(persons.get(0))) {
+            if (!potentialCelebrity.equals(persons.get(i)) && potentialCelebrity.isKnownPerson(persons.get(i))) {
                 return Optional.empty();
             }
         }
