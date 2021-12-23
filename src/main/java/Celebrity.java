@@ -16,11 +16,7 @@ public class Celebrity {
         private List<Person> knowsPeople = new ArrayList<>();
 
         public boolean isKnownPerson(Person person) {
-            if (this.equals(person)) {
-                return true;
-            } else {
-                return knowsPeople.contains(person);
-            }
+            return this.equals(person) ? true : knowsPeople.contains(person);
         }
 
         public boolean addKnownPerson(Person person) {
@@ -63,12 +59,7 @@ public class Celebrity {
     }
 
     private static Person checkPotentialCelebrity(Person first, Person second) {
-        Person potentialCelebrity = null;
-        if (first.isKnownPerson(second)) {
-            potentialCelebrity = second;
-        } else {
-            potentialCelebrity = first;
-        }
+        Person potentialCelebrity = first.isKnownPerson(second) ? second : first;
         Person notCelebrity = potentialCelebrity.equals(first) ? second : first;
         if (potentialCelebrity.isKnownPerson(notCelebrity)) {
             potentialCelebrity = null;
