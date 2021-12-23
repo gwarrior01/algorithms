@@ -2,8 +2,10 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,7 +15,7 @@ public class Celebrity {
     @EqualsAndHashCode
     static class Person {
         private final int ident;
-        private List<Person> knowsPeople = new ArrayList<>();
+        private Set<Person> knowsPeople = new HashSet<>();
 
         public boolean isKnownPerson(Person person) {
             return this.equals(person) ? true : knowsPeople.contains(person);
