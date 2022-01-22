@@ -18,19 +18,14 @@ public class PreOrderTraversal {
         if (node == null) {
             return;
         }
-        Deque<Node> leftNodes = new ArrayDeque<>();
-        Deque<Node> rightNodes = new ArrayDeque<>();
-        leftNodes.add(node);
+        Deque<Node> nodes = new ArrayDeque<>();
+        nodes.add(node);
         Node current;
-        while (!leftNodes.isEmpty() || !rightNodes.isEmpty()) {
-            if (!leftNodes.isEmpty()) {
-                current = leftNodes.pollFirst();
-            } else {
-                current = rightNodes.pollLast();
-            }
+        while (!nodes.isEmpty()) {
+            current = nodes.pollFirst();
             visit(current);
-            Optional.of(current).map(cur -> cur.left).ifPresent(leftNodes::add);
-            Optional.of(current).map(cur -> cur.right).ifPresent(rightNodes::add);
+            Optional.of(current).map(cur -> cur.right).ifPresent(nodes::addFirst);
+            Optional.of(current).map(cur -> cur.left).ifPresent(nodes::addFirst);
         }
     }
 
