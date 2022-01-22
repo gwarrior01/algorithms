@@ -4,33 +4,41 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Optional;
 
-public class PreOrderTraversal {
-    public static void preOrderTraversalRecursive(Node node) {
-        if (node == null) {
-            return;
-        }
+public class InOrderTraversal {
+
+    public static void inOrderTraversalRecursive(Node node) {
+        if (node == null) return;
+        inOrderTraversalRecursive(node.left);
         visit(node);
-        preOrderTraversalRecursive(node.left);
-        preOrderTraversalRecursive(node.right);
+        inOrderTraversalRecursive(node.right);
     }
 
-    public static void preOrderTraversal(Node node) {
-        if (node == null) {
-            return;
-        }
+    public static void inOrderTraversal(Node node) {
+        if (node == null) return;
         Deque<Node> nodes = new ArrayDeque<>();
-        nodes.add(node);
+        Deque<Integer> values = new ArrayDeque<>();
+        nodes.addFirst(node);
         Node current;
         while (!nodes.isEmpty()) {
             current = nodes.pollFirst();
-            visit(current);
+            values.addFirst(current.value);
+            if (current.left == null) {
+                process(values.pollFirst());
+            }
+            if (current.right == null && !values.isEmpty()) {
+                process(values.pollFirst());
+            }
             Optional.ofNullable(current.right).ifPresent(nodes::addFirst);
             Optional.ofNullable(current.left).ifPresent(nodes::addFirst);
         }
     }
 
     private static void visit(Node node) {
-        System.out.print(node.value);
+        process(node.value);
+    }
+
+    private static void process(Integer value) {
+        System.out.print(value);
     }
 
     private static class Node {
@@ -57,9 +65,8 @@ public class PreOrderTraversal {
         root.left.left = new Node(6);
         root.left.right = new Node(8);
         root.right.right = new Node(7);
-        preOrderTraversalRecursive(root);
+        inOrderTraversalRecursive(root);
         System.out.println();
-        preOrderTraversal(root);
-        System.out.println();
+        inOrderTraversal(root);
     }
 }
